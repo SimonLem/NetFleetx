@@ -145,7 +145,7 @@ function App() {
             alt="logo"
             src="../logoNetfleetx.jpg"
             style={{
-              width: "calc(50px + 50%)",
+              width: "100%",
               marginTop: "2%",
               cursor: "pointer",
             }}
