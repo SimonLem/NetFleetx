@@ -143,7 +143,7 @@ function App() {
         <a href="http://localhost:3000/">
           <img
             alt="logo"
-            src="./logoNetfleetx.jpg"
+            src="../logoNetfleetx.jpg"
             style={{
               width: "calc(50px + 50%)",
               marginTop: "2%",
