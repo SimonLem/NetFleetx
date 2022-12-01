@@ -145,7 +145,7 @@ function App() {
             alt="logo"
             src="../logoNetfleetx.jpg"
             style={{
-              width: "100%",
+              width: hasAlreadySearched ? "100%" : "50%",
               marginTop: "2%",
               cursor: "pointer",
             }}
