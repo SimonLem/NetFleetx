@@ -52,6 +52,7 @@
   margin-top: 10%;
   height: 40%;
   width: 100%;
+  user-select: none;
 }
 .searchMovie {
   font-size: calc(2px + 0.8vh + 0.8vw);
@@ -78,6 +79,7 @@
   width: calc(200px + 8vh + 8vw);
   height: calc(100px + 4vh + 4vw);
   background-size: cover;
+  user-select: none;
   margin-left: 5%;
   margin-top: 2%;
 }
@@ -113,7 +115,9 @@
   width: 75%;
   background: linear-gradient(#000000 20%, #111111f0 60%, #000000);
   color: white;
-  font-size: calc(6px + 0.6vh + 0.6vw);overflow: auto;
+  user-select: none;
+  font-size: calc(6px + 0.6vh + 0.6vw);
+  overflow: auto;
 }
 .closeIcon {
   position: absolute;
@@ -126,7 +130,7 @@
 .movieImg {
   width: 50%;
 }
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 600px) {
   .movieImg {
     width: 100%;
   }

@@ -12,22 +12,6 @@ function App() {
   const [openModal, setOpenModal] = useState(false); //Toggle d'ouverture de la modal du film selectionné
   const [hasAlreadySearched, setHasAlreadySearched] = useState(false); //True si la barre de recherche a été utilisée au moins une fois
 
-  //Requête API : Films les plus populaires
-  async function fetchDataNoSearch() {
-    var rawResponse = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_KEY}&language=fr`
-    );
-    var response = await rawResponse.json();
-    setListMovie(response.results);
-  }
-  //Requête API : Resultats de la recherche
-  async function fetchDataSearch() {
-    var rawResponse = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_KEY}&language=fr-FR&query=${searchValue}&page=1`
-    );
-    var response = await rawResponse.json();
-    setListMovie(response.results);
-  }
   //Requête API : Liste des genres
   async function fetchDataGenre() {
     var rawResponse = await fetch(
@@ -36,15 +20,31 @@ function App() {
     var response = await rawResponse.json();
     setListGenre(response.genres);
   }
+  //Requête API : Films les plus populaires
+  async function fetchDataNoSearch() {
+    var rawResponse = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_KEY}&language=fr`
+    );
+    var response = await rawResponse.json();
+    setListMovie(response.results);
+  }
   //Lance la première requête API et recupère les genres au lancement du site
   useEffect(() => {
     fetchDataGenre();
     fetchDataNoSearch();
   }, []);
 
-  //Lance la deuxièmê requête API lorsque le champs de recherche est mis à jour et qu'il n'est pas vide
+  //Lance la deuxième requête API lorsque le champs de recherche est mis à jour et qu'il n'est pas vide
   useEffect(() => {
-    if (searchValue != "") {
+    //Requête API : Resultats de la recherche
+    async function fetchDataSearch() {
+      var rawResponse = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_KEY}&language=fr-FR&query=${searchValue}&page=1`
+      );
+      var response = await rawResponse.json();
+      setListMovie(response.results);
+    }
+    if (searchValue !== "") {
       fetchDataSearch();
       setHasAlreadySearched(true);
     } else {
@@ -66,10 +66,10 @@ function App() {
   //Convertit les ID de genre de film en string (prend un array d'ID en entrée)
   var genreIDtoString = (id) => {
     let genre = "";
-      for (let i = 0; i < id.length; i++) {
-        genre += listGenre.find((e) => e.id == id[i]).name + " ";
-      }
-      return genre;
+    for (let i = 0; i < id.length; i++) {
+      genre += listGenre.find((e) => e.id === id[i]).name + " ";
+    }
+    return genre;
   };
 
   //Map des components Movie à partir de la liste de films récupérés par l'API
@@ -79,7 +79,7 @@ function App() {
         ? "/noImageAvailable.jpg"
         : "https://image.tmdb.org/t/p/w500/" + movie.backdrop_path;
     var desc =
-      movie.overview.length == 0 ? "Description indisponible" : movie.overview;
+      movie.overview.length === 0 ? "Description indisponible" : movie.overview;
 
     return (
       <MovieCard
@@ -99,7 +99,7 @@ function App() {
   var bestResultsMap = listMovie.map((movie, i) => {
     var img = "";
     //Garde les  8 premiers resultats et verifie que le champs de saisie n'est pas vide
-    if (i < 8 && searchValue != "") {
+    if (i < 8 && searchValue !== "") {
       var title = movie.title;
       //Verifie que le titre n'est pas trop long
       if (movie.title.length > 45) {
@@ -131,7 +131,7 @@ function App() {
           {title}
         </div>
       );
-    }
+    } else return null;
   });
 
   return (
@@ -176,7 +176,7 @@ function App() {
         {openModal ? (
           <Modal movieModal={movieModal} handleClickParent={clickModal} />
         ) : null}
-        {listMovie.length != 0 ? (
+        {listMovie.length !== 0 ? (
           listMovieMap
         ) : (
           <p style={{ color: "white", marginTop: "40vh" }}>Aucun résultat</p>
