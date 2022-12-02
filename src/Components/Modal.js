@@ -9,7 +9,7 @@ function Modal(props) {
     if (i < props.movieModal.vote) {
       color = { color: "#f1c40f" };
     }
-    tabGlobalRating.push(<FaStar style={color} key={i}/>);
+    tabGlobalRating.push(<FaStar style={color} key={i} />);
 
     //Handle pour la fermeture de la modal
     var handleClick = () => {
@@ -19,7 +19,7 @@ function Modal(props) {
   return (
     <div className="modal">
       <FaRegWindowClose className="closeIcon" onClick={() => handleClick()} />
-      <h1 >{props.movieModal.name}</h1>
+      <h1>{props.movieModal.name}</h1>
       <div
         style={{
           display: "flex",
@@ -27,6 +27,7 @@ function Modal(props) {
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
+          margin: "5%",
         }}
       >
         <div
@@ -51,7 +52,7 @@ function Modal(props) {
           style={{ backgroundColor: "green" }}
         />
       </div>
-      <div style={{ margin: "5%" }}>
+      <div style={{ margin: "5%", marginTop: "0"}}>
         <p>{props.movieModal.desc}</p>
       </div>
     </div>

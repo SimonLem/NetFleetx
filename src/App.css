@@ -17,6 +17,7 @@
 .Movies {
   background-color: #161616;
   display: flex;
+  height: 100%;
   flex-wrap: wrap;
   justify-content: center;
   margin-left: 25%;
@@ -30,7 +31,7 @@
   border: 1px black solid;
   margin-top: 5vh;
   max-width: 200px;
-  min-height: 40px;
+  min-height: 30px;
   width: 60%;
   transition: all 0.3s ease-in-out;
 }
@@ -108,7 +109,6 @@
 .modal {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   position: fixed;
   height: 100vh;
@@ -130,8 +130,23 @@
 .movieImg {
   width: 50%;
 }
-@media only screen and (max-width: 600px) {
+@media (max-width: 850px) {
   .movieImg {
     width: 100%;
+  }
+  .searchBar{
+    font-size: 12px;
+    width: 90%;
+  }
+  #input {
+    font-size: 12px;
+  }
+  ::placeholder {
+    font-size: 12px;
+    color: black;
+    opacity: 1;
+  }
+  .Menu {
+    width: 40vw;
   }
 }
