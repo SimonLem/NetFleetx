@@ -55,11 +55,11 @@
   user-select: none;
 }
 .searchMovie {
-  font-size: calc(2px + 0.8vh + 0.8vw);
+  font-size: calc(2px + 0.6vh + 0.6vw);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20%;
+  height: 12%;
   background-color: rgba(0, 0, 0, 0);
   transition: all 0.2s ease-in;
   cursor: pointer;
